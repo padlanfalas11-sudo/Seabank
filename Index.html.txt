@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomor Rekening M. Padlan Falas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+        .bank-logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff5722; /* Warna khas SeaBank */
+            margin-bottom: 8px;
+        }
+        .name {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .rek-box {
+            background: #f8f9fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .rek-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 1px;
+        }
+        .copy-btn {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .copy-btn:active {
+            background-color: #e64a19;
+        }
+        .toast {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #28a745;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="bank-logo">SeaBank</div>
+        <div class="name"><strong>M. Padlan Falas</strong></div>
+        
+        <div class="rek-box">
+            <span class="rek-number" id="rekText">901307655610</span>
+            <button class="copy-btn" onclick="salinRekening()">Salin</button>
+        </div>
+        
+        <div class="toast" id="notif">Nomor rekening berhasil disalin!</div>
+    </div>
+
+    <script>
+        function salinRekening() {
+            const textToCopy = document.getElementById("rekText").innerText;
+            
+            // Menggunakan Clipboard API modern yang didukung semua HP
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const notif = document.getElementById("notif");
+                notif.style.display = "block";
+                setTimeout(() => {
+                    notif.style.display = "none";
+                }, 2000);
+            }).catch(err => {
+                alert("Gagal menyalin teks");
+            });
+        }
+    </script>
+
+</body>
+</html>
